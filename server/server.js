@@ -3,6 +3,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+require('dotenv').config();
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -27,6 +28,6 @@ app.use('/message', messageRouter);
 app.use('/chat', chatRouter);
 
 //{ useNewUrlParser: true, useUnifiedTopology: true }
-mongoose.connect('mongodb+srv://idonice3:2RK38XFi5bRnPF1w@cluster0.7notbsl.mongodb.net/mailbox')
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch(error => console.error('Error connecting to MongoDB:', error));
